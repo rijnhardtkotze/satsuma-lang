@@ -8,6 +8,12 @@
   "bin": {
     "satsuma": "./dist/index.js"
   },
+  "exports": {
+    "./workspace": {
+      "types": "./dist/public-api.d.ts",
+      "default": "./dist/public-api.js"
+    }
+  },
   "imports": {
     "#src/*": "./dist/*"
   },

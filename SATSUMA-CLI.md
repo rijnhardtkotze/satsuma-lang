@@ -269,6 +269,74 @@ satsuma arrows changed_schema.changed_field --as-source --json
 - **Does not call language models.** The CLI is deterministic, fast, and reproducible. Same input, same output, every time.
 - **Does not accept NL queries.** Commands take explicit structural arguments. The agent decides which commands to call based on the user's question.
 
+## Programmatic Usage (Node.js)
+
+Toolchain authors who want to drive workspace loading from TypeScript or
+JavaScript — without shelling out to the `satsuma` binary — can import
+directly from the `satsuma-cli/workspace` entry point.
+
+**Note:** `satsuma-cli` is a private monorepo package and is not published
+to npm. To consume it from another package in the same monorepo, add a file
+dependency:
+
+```json
+"dependencies": {
+  "satsuma-cli": "file:../satsuma-cli"
+}
+```
+
+External consumers can clone the repo, run `npm install && npm run build`
+inside `tooling/satsuma-cli/`, then reference it as a local file dependency
+or via `npm link`.
+
+### Loading a workspace
+
+```typescript
+import { loadWorkspace, CommandError, EXIT_PARSE_ERROR } from "satsuma-cli/workspace";
+
+const { files, index } = await loadWorkspace("pipeline.stm");
+
+// index.schemas  — Map<string, SchemaRecord>
+// index.mappings — Map<string, MappingRecord>
+// files          — ParsedFile[] (each carries .tree and .src for CST access)
+
+for (const [name, schema] of index.schemas) {
+  console.log(name, schema.fields.map((f) => f.name));
+}
+```
+
+To follow import declarations transitively (the default) or load a single
+file in isolation:
+
+```typescript
+// Follow imports (default) — full workspace
+const ws = await loadWorkspace("platform.stm");
+
+// Single file only — useful for comparison tools
+const single = await loadWorkspace("feature-branch.stm", { followImports: false });
+```
+
+### Error handling
+
+`loadWorkspace` throws `CommandError` on resolution failures (bad path,
+directory argument, unreadable file). Check `err.code` against the exported
+`EXIT_PARSE_ERROR` constant to distinguish these from unexpected errors:
+
+```typescript
+try {
+  const ws = await loadWorkspace(pathArg);
+} catch (err) {
+  if (err instanceof CommandError && err.code === EXIT_PARSE_ERROR) {
+    console.error("workspace load failed:", err.message);
+    process.exit(2);
+  }
+  throw err; // unexpected — re-throw
+}
+```
+
+The `EXIT_OK`, `EXIT_NOT_FOUND`, and `EXIT_PARSE_ERROR` constants are all
+re-exported from `satsuma-cli/workspace` alongside `CommandError`.
+
 ## Source
 
 - CLI source: `tooling/satsuma-cli/`
