@@ -6,7 +6,7 @@ links: []
 created: 2026-06-06T00:00:00Z
 type: feature
 priority: 3
-assignee: unassigned
+assignee: rijnhardtkotze
 tags: [cli, satsuma-cli, public-api, docs]
 ---
 # Expose loadWorkspace as a supported public programmatic API
