@@ -262,6 +262,23 @@ satsuma arrows changed_schema.changed_field --as-source --json
 # 3. Agent reads NL on affected arrows to assess semantic impact
 ```
 
+## Programmatic Usage (Node.js)
+
+If you are building your own tools around Satsuma (like custom lint rules or visualizers), you can consume the CLI's extraction logic programmatically.
+
+```typescript
+import { loadWorkspace } from "@satsuma/cli";
+
+// 1. Resolve entry point, parse files, and build the structural index
+const { files, index } = await loadWorkspace("pipeline.stm");
+
+// 2. Query the semantic model (extending the capabilities of the CLI commands)
+const demographicsSchema = index.schemas.get("sat_customer_demographics");
+const mappedFields = demographicsSchema.fields.map(f => f.name);
+```
+
+The `loadWorkspace` API encapsulates file resolution, import following, parsing, and structural indexing into a single call with robust error handling.
+
 ## What the CLI Does Not Do
 
 - **Does not interpret NL.** Transform strings, notes, and comments are extracted verbatim. The CLI never assesses whether an NL transform is correct, complete, or semantically equivalent to another.

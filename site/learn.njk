@@ -528,6 +528,7 @@ code --install-extension vscode-satsuma-{{ site.version_tag }}.vsix</code></pre>
           </div>
           <h3 class="text-xl font-bold text-charcoal mb-4">Schema Format Conventions</h3>
           <ul class="space-y-2">
+            <li><a href="https://github.com/EqualExperts/satsuma-lang/tree/main/docs/conventions-for-schema-formats/avro" target="_blank" rel="noopener" class="flex items-center gap-2 text-sm text-warm-gray hover:text-orange transition-colors"><span class="w-1.5 h-1.5 bg-orange/60 rounded-full flex-shrink-0"></span>Apache Avro</a></li>
             <li><a href="https://github.com/EqualExperts/satsuma-lang/tree/main/docs/conventions-for-schema-formats/asn1" target="_blank" rel="noopener" class="flex items-center gap-2 text-sm text-warm-gray hover:text-orange transition-colors"><span class="w-1.5 h-1.5 bg-orange/60 rounded-full flex-shrink-0"></span>ASN.1</a></li>
             <li><a href="https://github.com/EqualExperts/satsuma-lang/tree/main/docs/conventions-for-schema-formats/cobol-copybook" target="_blank" rel="noopener" class="flex items-center gap-2 text-sm text-warm-gray hover:text-orange transition-colors"><span class="w-1.5 h-1.5 bg-orange/60 rounded-full flex-shrink-0"></span>COBOL Copybook</a></li>
             <li><a href="https://github.com/EqualExperts/satsuma-lang/tree/main/docs/conventions-for-schema-formats/dicom" target="_blank" rel="noopener" class="flex items-center gap-2 text-sm text-warm-gray hover:text-orange transition-colors"><span class="w-1.5 h-1.5 bg-orange/60 rounded-full flex-shrink-0"></span>DICOM</a></li>
@@ -615,6 +616,51 @@ code --install-extension vscode-satsuma-{{ site.version_tag }}.vsix</code></pre>
                  class="flex items-center gap-2 text-sm text-warm-gray hover:text-orange transition-colors group">
                 <svg class="w-4 h-4 text-orange/60 group-hover:text-orange flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
                 Project Overview &amp; Roadmap
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Agent Skills -->
+        <div class="bg-cream rounded-2xl p-8 border border-charcoal/5">
+          <div class="w-12 h-12 gradient-orange rounded-xl flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+          </div>
+          <h3 class="text-xl font-bold text-charcoal mb-4">Agent Skills</h3>
+          <ul class="space-y-3">
+            <li>
+              <a href="https://github.com/EqualExperts/satsuma-lang/tree/main/skills/satsuma-explainer" target="_blank" rel="noopener"
+                 class="flex items-center gap-2 text-sm text-warm-gray hover:text-orange transition-colors group">
+                <svg class="w-4 h-4 text-orange/60 group-hover:text-orange flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                Explainer &amp; PII Audit
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/EqualExperts/satsuma-lang/tree/main/skills/satsuma-from-dbt" target="_blank" rel="noopener"
+                 class="flex items-center gap-2 text-sm text-warm-gray hover:text-orange transition-colors group">
+                <svg class="w-4 h-4 text-orange/60 group-hover:text-orange flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                dbt &rarr; Satsuma
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/EqualExperts/satsuma-lang/tree/main/skills/satsuma-to-dbt" target="_blank" rel="noopener"
+                 class="flex items-center gap-2 text-sm text-warm-gray hover:text-orange transition-colors group">
+                <svg class="w-4 h-4 text-orange/60 group-hover:text-orange flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                Satsuma &rarr; dbt
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/EqualExperts/satsuma-lang/tree/main/skills/satsuma-sample-data" target="_blank" rel="noopener"
+                 class="flex items-center gap-2 text-sm text-warm-gray hover:text-orange transition-colors group">
+                <svg class="w-4 h-4 text-orange/60 group-hover:text-orange flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                Synthetic Data
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/EqualExperts/satsuma-lang/tree/main/skills/satsuma-to-openlineage" target="_blank" rel="noopener"
+                 class="flex items-center gap-2 text-sm text-warm-gray hover:text-orange transition-colors group">
+                <svg class="w-4 h-4 text-orange/60 group-hover:text-orange flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                OpenLineage Export
               </a>
             </li>
           </ul>
