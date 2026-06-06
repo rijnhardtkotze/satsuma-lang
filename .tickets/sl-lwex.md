@@ -1,6 +1,6 @@
 ---
 id: sl-lwex
-status: open
+status: done
 deps: []
 links: []
 created: 2026-06-06T00:00:00Z
@@ -45,3 +45,19 @@ a shared loader may belong there rather than in the CLI package.
   `{ files, index }` shape (schemas as a `Map`) to lock the contract.
 
 ## Notes
+
+**2026-06-06T00:00:00Z**
+
+Cause: `loadWorkspace` was exported from `src/load-workspace.ts` but the
+package had no `exports` field, so external consumers could only reach it
+via a deep import of the compiled artifact — a fragile, unsupported path.
+
+Fix: Added `src/public-api.ts` as a thin re-export barrel for
+`loadWorkspace`, `LoadedWorkspace`, `LoadWorkspaceOptions`, `CommandError`,
+and the exit-code constants. Registered it as the `satsuma-cli/workspace`
+entry point in the `exports` map. Documented the consumption model
+(file-dependency, not npm) in `SATSUMA-CLI.md §"Programmatic Usage"`. Added
+`test/public-api.test.ts` as a contract test locking the `{ files, index }`
+shape. Decision to keep the loader in `satsuma-cli` (not `satsuma-core`)
+recorded: `loadWorkspace` throws `CommandError`, a CLI-specific concept not
+appropriate for the shared core library.
