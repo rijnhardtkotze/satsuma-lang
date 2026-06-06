@@ -264,20 +264,23 @@ satsuma arrows changed_schema.changed_field --as-source --json
 
 ## Programmatic Usage (Node.js)
 
-If you are building your own tools around Satsuma (like custom lint rules or visualizers), you can consume the CLI's extraction logic programmatically.
+If you are building your own tools around Satsuma (like custom lint rules or visualizers), you can consume the CLI's extraction logic programmatically instead of shelling out to the `satsuma` binary.
+
+> **Note:** `satsuma-cli` is a private workspace package — it is not published to npm and exposes only the `satsuma` binary, not a top-level library entry point. To consume it programmatically today, build it from source and link it (`cd tooling/satsuma-cli && npm install && npm run build && npm link`), then import the built module directly. This surface is internal and may change between releases.
 
 ```typescript
-import { loadWorkspace } from "@satsuma/cli";
+import { loadWorkspace } from "satsuma-cli/dist/load-workspace.js";
 
-// 1. Resolve entry point, parse files, and build the structural index
+// 1. Resolve entry point, parse files, and build the structural index.
 const { files, index } = await loadWorkspace("pipeline.stm");
 
-// 2. Query the semantic model (extending the capabilities of the CLI commands)
+// 2. Query the semantic model. `index.schemas` is a Map<string, SchemaRecord>,
+//    so an unknown name returns undefined — guard before reading fields.
 const demographicsSchema = index.schemas.get("sat_customer_demographics");
-const mappedFields = demographicsSchema.fields.map(f => f.name);
+const mappedFields = demographicsSchema?.fields.map((field) => field.name) ?? [];
 ```
 
-The `loadWorkspace` API encapsulates file resolution, import following, parsing, and structural indexing into a single call with robust error handling.
+`loadWorkspace` encapsulates path resolution, import following, parsing, and structural indexing into a single call with a consistent error contract — it throws a `CommandError` on resolve or read failures rather than terminating the process itself.
 
 ## What the CLI Does Not Do
 
