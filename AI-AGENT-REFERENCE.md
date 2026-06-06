@@ -177,7 +177,7 @@ Reports and ML models are consumer schemas, not new block types:
   schema churn_model (model, source {training_set}) { ... }
 
 ## @ref in NL strings (CRITICAL)
-ALWAYS use @ref for field and schema names inside "..." NL strings:
+ALWAYS use @ref for field and schema names inside single-line `"..."` and multi-line `"""..."""` NL strings:
   -> total { "Sum @line_amount grouped by @order_id" }
   (note "Derived from @customer.email after dedup")
   "Join @crm_customers to @orders on @crm_customers.customer_id = @orders.customer_id"

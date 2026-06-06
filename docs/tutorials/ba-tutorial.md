@@ -948,4 +948,7 @@ When you next review a mapping specification, try this approach:
 
 If everything checks out, you can sign it off with confidence. If something doesn't match, you can point to the exact line and say precisely what needs changing — no more ambiguous feedback on a 200-row spreadsheet.
 
+**Tip: Use Agent Skills for plain-English walkthroughs**
+If you want to review a complex mapping but prefer not to read the raw `.stm` syntax, you can use the [`satsuma-explainer` Agent Skill](../../skills/satsuma-explainer/) with an AI assistant like Claude or Copilot. It produces plain-English walkthroughs, PII audits, and coverage checks from any Satsuma file.
+
 That's a far cry from arguing over which version of the Excel file has the latest transformation logic.
