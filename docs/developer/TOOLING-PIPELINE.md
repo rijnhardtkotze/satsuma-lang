@@ -8,7 +8,7 @@ Satsuma uses the shared parser singleton in `@satsuma/core` so CLI and LSP consu
 
 - `initParser()` initializes the Tree-sitter parser and language once.
 - Consumers parse source through the initialized parser instance.
-- Consumers can pass a `locateFile` resolver when environment-specific WASM runtime resolution is required.
+- Consumers can pass a `locateFile` resolver inside the optional `initParser(..., options)` argument when environment-specific WASM runtime resolution is required.
 
 ```ts
 import { getParser, initParser } from "@satsuma/core";
@@ -96,6 +96,7 @@ Satsuma diagnostics combine parse-level and semantic feedback.
 
 - Parse diagnostics come from CST error and missing nodes.
 - Semantic diagnostics come from `@satsuma/core` validation (`collectSemanticDiagnostics`) and use workspace-derived semantic index data.
+- `semanticIndex` is the consumer-adapted validation view built from CLI extraction results (`ExtractedWorkspace`) or LSP workspace index data.
 - In editor workflows, diagnostics are merged so users receive actionable feedback while editing.
 
 ```ts
