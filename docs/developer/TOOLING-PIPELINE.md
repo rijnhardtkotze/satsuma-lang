@@ -71,7 +71,7 @@ const { files, index } = await loadWorkspace(pathArg);
 The LSP server uses parser and index services to power editor workflows.
 
 - `server.ts` manages LSP lifecycle and request routing.
-- `workspace-index.ts` (via `@satsuma/viz-backend`) powers definitions, references, and completion lookups.
+- `workspace-index.ts` in `satsuma-lsp` is an LSP-facing wrapper that delegates shared indexing operations to `@satsuma/viz-backend`; this powers definitions, references, and completion lookups.
 - Feature handlers map core results into LSP protocol types.
 
 ```ts
@@ -93,7 +93,7 @@ indexFile(workspaceIndex, uri, tree);
 Satsuma diagnostics combine parse-level and semantic feedback.
 
 - Parse diagnostics come from CST error and missing nodes.
-- Semantic diagnostics come from shared core validation against workspace index data.
+- Semantic diagnostics come from `@satsuma/core` validation (`collectSemanticDiagnostics`) using a semantic index shape built from workspace extraction/index data.
 - In editor workflows, diagnostics are merged so users receive actionable feedback while editing.
 
 ```ts
