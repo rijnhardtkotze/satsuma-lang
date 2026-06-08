@@ -379,6 +379,7 @@ The dependency graph is acyclic by construction. `satsuma-viz-backend` is the sh
 ## See Also
 
 - `adrs/` — Architectural decision records
+- `docs/developer/TOOLING-PIPELINE.md` — parser-to-diagnostics pipeline walkthrough
 - `SATSUMA-V2-SPEC.md` — Language specification (authoritative)
 - `SATSUMA-CLI.md` — CLI command reference
 - `archive/features/29-codebase-and-test-cleanup/PRD.md` — completed Feature 29 cleanup plan
